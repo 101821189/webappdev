@@ -9,7 +9,7 @@
 <body>
     <h1>web app dev - lab 3</h1>
     <?php
-        function CheckYear($year)
+        function is_leapyear($year)
         {
             $result = "standard";
 
@@ -33,7 +33,7 @@
                 {
                     if ($year == round($year)) // num is an int
                     {
-                        $result = CheckYear($year);
+                        $result = is_leapyear($year);
                         echo "<p>$year is a $result year</p>";
                     }
                     else // num is not an int
