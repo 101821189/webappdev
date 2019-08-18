@@ -9,6 +9,21 @@
 <body>
     <h1>web app dev - lab 3</h1>
     <?php
+        function CheckYear($year)
+        {
+            $result = "standard";
+
+            if ($year % 4 == 0)
+                if ($year % 100 != 0)
+                    $result = "leap";
+                elseif ($year % 400 == 0)
+                    $result = "leap";
+            else
+                $result = "standard";
+
+            return $result;
+        }
+
         if (isset($_GET["year"]))
         {
             $year = $_GET["year"];
@@ -18,16 +33,7 @@
                 {
                     if ($year == round($year)) // num is an int
                     {
-                        $result = "standard";
-
-                        if ($year % 4 == 0)
-                            if ($year % 100 != 0)
-                                $result = "leap";
-                            elseif ($year % 400 == 0)
-                                $result = "leap";
-                        else
-                            $result = "standard";
-
+                        $result = CheckYear($year);
                         echo "<p>$year is a $result year</p>";
                     }
                     else // num is not an int
