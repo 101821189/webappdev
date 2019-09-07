@@ -1,3 +1,4 @@
 <?php
-    $filename = "../../data/jobposts/jobs.txt";
+    $dir = "../../data/jobposts";
+    $filename = "$dir/jobs.txt";
 ?>

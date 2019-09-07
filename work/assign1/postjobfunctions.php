@@ -1,8 +1,19 @@
 <?php
 
+    function CheckDirectory()
+    {
+        include "filename.php";
+        if (!file_exists($dir))
+            mkdir($dir, 0777, true);
+    }
+
     function ValidateInputs()
     {
         include "filename.php";
+
+        // just so we know that the directory at least exists before we do stuff
+        CheckDirectory();
+
         if (
             isset($_POST["positionid"]) &&
             isset($_POST["title"]) &&
@@ -39,7 +50,7 @@
                 {
                     fclose($handle);
                     echo "<h1>uh oh</h1>";
-                    echo "<p>ensure that you aren't entering" .
+                    echo "<p>ensure that you aren't entering " .
                          "a duplicate id. <a href='postjobform.php'>" .
                          "go back to the form</a> and try again.</p>";
                     
@@ -75,18 +86,17 @@
         
         $date = $_POST["closingdate"];
         $datetemp = explode("-", $date);
-        $date = $datetemp[0] . "/" . $datetemp[1] . "/" . $datetemp[2];
+        $date = $datetemp[2] . "/" . $datetemp[1] . "/" . $datetemp[0];
 
         $position = $_POST["position"];
         $contract = $_POST["contract"];
 
-        $applicationtype = "";
         if (isset($_POST["applicationtype1"]))
-            $applicationtype .= "1";
-        if (isset($_POST["applicationtype1"]) && $applicationtype == "")
-            $applicationtype .= "2";
-        else
-            $applicationtype .= "\t2";
+            $applicationtype = $_POST["applicationtype1"];
+        if (isset($_POST["applicationtype2"]) && $applicationtype == "")
+            $applicationtype = $_POST["applicationtype2"];
+        else if (isset($_POST["applicationtype2"]))
+            $applicationtype .= "\t" . $_POST["applicationtype2"];
 
         $location = $_POST["location"];
 
