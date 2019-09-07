@@ -5,10 +5,21 @@ fieldset {
     padding: 1%;
 }
 
-legend, .goHome {
+legend {
     text-align: center;
+    width: auto;
+    margin: auto;
 }
 
 input, textarea {
     margin: 1%;
+}
+
+.formButtons {
+    display: block;
+    margin: 1% auto;
+}
+
+.goHome {
+    text-align: center;
 }

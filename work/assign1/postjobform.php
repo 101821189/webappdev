@@ -15,7 +15,7 @@
 
     <main class="container lead">
         <h1>post a job</h1>
-        <form action="postjobsave.php" method="post">
+        <form action="postjobprocess.php" method="post">
             <fieldset>
                 <legend>enter job details below</legend>
                 <table>
@@ -72,11 +72,9 @@
                             </select>
                         </td>
                     </tr>
-                    <tr>
-                        <td><input type="submit" value="submit" /></td>
-                        <td><input type="reset" value="reset" /></td>
-                    </tr>
                 </table>
+                <input type="reset" value="reset" class="formButtons btn btn-secondary" />
+                <input type="submit" value="submit" class="formButtons btn btn-primary" />
             </fieldset>
         </form>
 
