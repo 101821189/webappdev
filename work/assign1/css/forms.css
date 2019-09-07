@@ -1,0 +1,14 @@
+fieldset {
+    border: 1px solid grey;
+    width: 50%;
+    margin: auto;
+    padding: 1%;
+}
+
+legend, .goHome {
+    text-align: center;
+}
+
+input, textarea {
+    margin: 1%;
+}
