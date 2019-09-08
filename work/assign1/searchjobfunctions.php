@@ -95,18 +95,28 @@
     function RegularSearch($jobs, $term)
     {
         $display = "";
+        $entries = array();
         foreach ($jobs as $job)
         {
+            if ($job == "") // just catches an edge case
+                continue;
+
             if (CheckMatch($job, $term))
+            {
                 $display .= GetJobDisplay($job);
+                $temp = explode("\t", $job);
+                array_push($entries, new JobListing($temp[0], $temp[3]));
+            }
         }
 
-        return $display;
+        $res = [$display, $entries];
+        return $res;
     }
 
     function NotSoRegularSearch($jobs, $term, $filter)
     {
         $display = "";
+        $entries = array();
         foreach ($jobs as $job)
         {
             if ($job == "") // just catches an edge case
@@ -117,11 +127,15 @@
                 case "position":
                     if (CheckMatch(explode("\t", $job)[4], $term))
                         $display .= GetJobDisplay($job);
+                        $temp = explode("\t", $job);
+                        array_push($entries, new JobListing($temp[0], $temp[3]));
                     break;
 
                 case "contract":
                     if (CheckMatch(explode("\t", $job)[5], $term))
                         $display .= GetJobDisplay($job);
+                        $temp = explode("\t", $job);
+                        array_push($entries, new JobListing($temp[0], $temp[3]));
                     break;
 
                 case "application type":
@@ -133,12 +147,16 @@
 
                     if ($res)
                         $display .= GetJobDisplay($job);
+                        $temp = explode("\t", $job);
+                        array_push($entries, new JobListing($temp[0], $temp[3]));
                     break;
                 
                 case "location":
                     $temp = explode("\t", $job);
                     if (CheckMatch($temp[sizeof($temp) - 1], $term))
                         $display .= GetJobDisplay($job);
+                        $temp = explode("\t", $job);
+                        array_push($entries, new JobListing($temp[0], $temp[3]));
                     break;
 
                 default:
@@ -150,5 +168,45 @@
         }
 
         return $display;
+    }
+
+    // allow us to use a job's id to display it
+    function PrintByID($id, $jobs)
+    {
+        foreach ($jobs as $job)
+        {
+            if ($id == GetFields($job)[0])
+            {
+                echo GetJobDisplay($job);
+                return;
+            }
+        }
+    }
+
+    function Compare($obj1, $obj2)
+    {
+        return $obj1->date < $obj2->date;
+    }
+
+    // sort all jobs on display by date in descending order
+    function SortByDate($jobdates, $jobs)
+    {
+        echo "<h1>here's some jobs that matched what you're looking for</h1>";
+        echo "<h2>optionally, you could <a href='searchjobform.php'>search again</a></h2>";
+
+        // loop through and make all the dates into unix timestamps
+        foreach ($jobdates as $jd)
+        {
+            $d = explode("/", $jd->date);
+            $jd->date = $d[2] . "-" . $d[1] . "-" . $d[0];
+            $jd->date = strtotime($jd->date);
+        }
+
+        // use this to sort each listing by their dates
+        usort($jobdates, 'Compare');
+
+        // print out each listing in their new order
+        foreach ($jobdates as $jd)
+            PrintByID($jd->id, $jobs);
     }
 ?>

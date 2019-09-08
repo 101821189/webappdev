@@ -17,6 +17,7 @@
         <?php
             include "searchjobfunctions.php";
             include "genericfunctions.php";
+            include "entry.php";
 
             if (!isset($_GET["searchterm"]) || $_GET["searchterm"] == "")
             {
@@ -40,20 +41,28 @@
 
                     if ($filter == "filter by...") // default search
                     {
-                        $display = RegularSearch($jobs, $term);
+                        $result = RegularSearch($jobs, $term);
                     }
                     else // not so default search
                     {
-                        $display = NotSoRegularSearch($jobs, $term, $filter);
+                        $result = NotSoRegularSearch($jobs, $term, $filter);
                     }
 
-                    if ($display == "")
+
+                    if ($result[0] == "")
                         NothingHere("none of our jobs matched your criteria.");
                     else
                     {
-                        echo "<h1>here's some jobs that matched what you're looking for</h1>";
-                        echo "<h2>optionally, you could <a href='searchjobform.php'>search again</a></h2>";
-                        echo $display;
+                        if (isset($_GET["sortbydate"]))
+                        {
+                            SortByDate($result[1], $jobs);
+                        }
+                        else
+                        {
+                            echo "<h1>here's some jobs that matched what you're looking for</h1>";
+                            echo "<h2>optionally, you could <a href='searchjobform.php'>search again</a></h2>";
+                            echo $result[0];
+                        }
                     }
                 }
             }

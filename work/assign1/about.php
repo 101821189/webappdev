@@ -17,14 +17,13 @@
         <h1>about</h1>
         <ul>
             <li>currently, this server is running PHP version <?php echo phpversion(); ?></li>
-            <li>for this assignment, i have not completed/attempted the following tasks:</li>
-            <ul>
-                <li>uh oh</li>
-            </ul>
-            <li>for this site i have done the following extra things:</li>
+            <li>for this assignment, i have completed/attempted all of the tasks</li>
+            <li>for this assignment i have done the following extra tasks:</li>
             <ul>
                 <li>used bootstrap</li>
                 <li>created custom styling with CSS</li>
+                <li>utilised a class structure to allow for sorting by date in the search results</li>
+                <li>added a checkbox to toggle sorting by dates in the search results</li>
             </ul>
         </ul>
 

@@ -32,6 +32,12 @@
                                 <option>location</option>
                             </select>
                         </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="sortbydate" id="sortbydate" value="sort">
+                            <label for="sortbydate">sort by date</label>
+                        </td>
                         <td><input type="submit" value="submit" class="formButtons btn btn-primary" /></td>
                     </tr>
                 </table>
