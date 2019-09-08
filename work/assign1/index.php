@@ -4,12 +4,9 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="description" content="web programming :: assignment 1" />
     <meta name="keywords" content="web, programming" />
-    <style>
-        .minorHeading {
-            font-weight: bold;
-        }
-    </style>
+
     <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="main.css" />
 
     <title>assignment 1 || index</title>
 </head>

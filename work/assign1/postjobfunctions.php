@@ -1,5 +1,5 @@
 <?php
-
+    // used to automatically handle creating the directory if it doesn't exist
     function CheckDirectory()
     {
         include "filename.php";
@@ -7,9 +7,11 @@
             mkdir($dir, 0777, true);
     }
 
+    // validate any inputs from the user form
     function ValidateInputs()
     {
         include "filename.php";
+        include "genericfunctions.php";
 
         // just so we know that the directory at least exists before we do stuff
         CheckDirectory();
@@ -28,11 +30,10 @@
             // check if the id is the correct format
             if (!preg_match("/^P[0-9]{5}$/", $_POST["positionid"]))
             {
-                echo "<h1>uh oh</h1>";
-                echo "<p>make sure that the id is in the format \"" .
-                     "Pxxxxx\" where x is a number." .
-                     "<a href='postjobform.php'> go back to the form</a>" .
-                     " and try again</p>";
+                ErrorMessage(
+                    "make sure that the id is in the format \"Pxxxxx\" where x is a number.",
+                    "postjobform.php"
+                );
 
                 return false;
             }
@@ -49,10 +50,10 @@
                 if (explode("\t", $entry)[0] == $_POST["positionid"])
                 {
                     fclose($handle);
-                    echo "<h1>uh oh</h1>";
-                    echo "<p>ensure that you aren't entering " .
-                         "a duplicate id. <a href='postjobform.php'>" .
-                         "go back to the form</a> and try again.</p>";
+                    ErrorMessage(
+                        "ensure that you aren't entering a duplicate id.", 
+                        "postjobform.php"
+                    );
                     
                     return false;
                 }
@@ -63,15 +64,16 @@
         }
         else
         {
-            echo "<h1>uh oh</h1>";
-            echo "<p>looks like you're missing some stuff. " .
-                    "<a href='postjobform.php'>go back to the form</a>" .
-                    " and remember to fill out everything.</p>";
+            ErrorMessage(
+                "looks like you're missing some stuff.",
+                "postjobform.php"
+            );
 
             return false;
         }
     }
 
+    // write the job information to our jobs file
     function WriteData()
     {
         include "filename.php";

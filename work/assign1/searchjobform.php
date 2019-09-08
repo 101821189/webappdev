@@ -6,7 +6,8 @@
     <meta name="keywords" content="web, programming" />
 
     <link rel="stylesheet" href="css/bootstrap.css" />
-    <link rel="stylesheet" href="css/forms.css" />
+    <link rel="stylesheet" href="forms.css" />
+    <link rel="stylesheet" href="main.css" />
 
     <title>assignment 1 || find a job</title>
 </head>
