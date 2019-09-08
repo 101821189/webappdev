@@ -35,13 +35,16 @@
                 else
                 {
                     $term = $_GET["searchterm"];
+                    $filter = $_GET["filter"];
                     $jobs = ReadJobs();
 
-                    $display = "";
-                    foreach ($jobs as $job)
+                    if ($filter == "filter by...") // default search
                     {
-                        if (CheckMatch($job, $term))
-                            $display .= GetJobDisplay($job);
+                        $display = RegularSearch($jobs, $term);
+                    }
+                    else // not so default search
+                    {
+                        $display = NotSoRegularSearch($jobs, $term, $filter);
                     }
 
                     if ($display == "")

@@ -23,6 +23,15 @@
                 <table style="margin:auto">
                     <tr>
                         <td><input type="text" name="searchterm" /></td>
+                        <td>
+                            <select name="filter" style="margin:0.5em">
+                                <option selected>filter by...</option>
+                                <option>position</option>
+                                <option>contract</option>
+                                <option>application type</option>
+                                <option>location</option>
+                            </select>
+                        </td>
                         <td><input type="submit" value="submit" class="formButtons btn btn-primary" /></td>
                     </tr>
                 </table>

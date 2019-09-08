@@ -91,4 +91,64 @@
 
         return $res;
     }
+
+    function RegularSearch($jobs, $term)
+    {
+        $display = "";
+        foreach ($jobs as $job)
+        {
+            if (CheckMatch($job, $term))
+                $display .= GetJobDisplay($job);
+        }
+
+        return $display;
+    }
+
+    function NotSoRegularSearch($jobs, $term, $filter)
+    {
+        $display = "";
+        foreach ($jobs as $job)
+        {
+            if ($job == "") // just catches an edge case
+                continue;
+
+            switch ($filter)
+            {
+                case "position":
+                    if (CheckMatch(explode("\t", $job)[4], $term))
+                        $display .= GetJobDisplay($job);
+                    break;
+
+                case "contract":
+                    if (CheckMatch(explode("\t", $job)[5], $term))
+                        $display .= GetJobDisplay($job);
+                    break;
+
+                case "application type":
+                    $temp = explode("\t", $job);
+                    if (sizeof($temp) == 8)
+                        $res = CheckMatch($temp[6], $term);
+                    else
+                        $res = CheckMatch($temp[6] . " " . $temp[7], $term);
+
+                    if ($res)
+                        $display .= GetJobDisplay($job);
+                    break;
+                
+                case "location":
+                    $temp = explode("\t", $job);
+                    if (CheckMatch($temp[sizeof($temp) - 1], $term))
+                        $display .= GetJobDisplay($job);
+                    break;
+
+                default:
+                    ErrorMessage(
+                        "looks like you've selected an invalid filter.",
+                        "searchjobform.php"
+                    );
+            }
+        }
+
+        return $display;
+    }
 ?>

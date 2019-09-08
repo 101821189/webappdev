@@ -15,7 +15,7 @@
 
     <main class="container lead">
     <h1>job vacancy posting system</h1>
-        <table>
+        <table class="table" style="width:50%;margin:auto;">
             <tr>
                 <td class="minorHeading">Name:</td>
                 <td>Daniel Coady</td>
