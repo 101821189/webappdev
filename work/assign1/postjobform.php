@@ -39,15 +39,15 @@
                     <tr>
                         <td><label>position:</label></td>
                         <td>
-                            <input type="radio" name="position" id="positionfulltime" value="fulltime" /><label for="positionfulltime">full time</label>
-                            <input type="radio" name="position" id="positionparttime" value="parttime" /><label for="positionparttime">part time</label>
+                            <input type="radio" name="position" id="positionfulltime" value="full time" /><label for="positionfulltime">full time</label>
+                            <input type="radio" name="position" id="positionparttime" value="part time" /><label for="positionparttime">part time</label>
                         </td>
                     </tr>
                     <tr>
                         <td><label>contract:</label></td>
                         <td>
                             <input type="radio" name="contract" id="contractongoing" value="ongoing" /><label for="contractongoing">ongoing</label>
-                            <input type="radio" name="contract" id="contractfixedterm" value="fixedterm" /><label for="contractfixedterm">fixed term</label>
+                            <input type="radio" name="contract" id="contractfixedterm" value="fixed term" /><label for="contractfixedterm">fixed term</label>
                         </td>
                     </tr>
                     <tr>

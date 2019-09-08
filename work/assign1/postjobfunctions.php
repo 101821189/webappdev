@@ -24,7 +24,8 @@
             isset($_POST["position"]) &&
             isset($_POST["contract"]) &&
             (isset($_POST["applicationtype1"]) || isset($_POST["applicationtype2"]) ) &&
-            isset($_POST["location"])
+            isset($_POST["location"]) &&
+            $_POST["location"] != "---"
         )
         {
             // check if the id is the correct format
@@ -95,7 +96,7 @@
 
         if (isset($_POST["applicationtype1"]))
             $applicationtype = $_POST["applicationtype1"];
-        if (isset($_POST["applicationtype2"]) && $applicationtype == "")
+        if (isset($_POST["applicationtype2"]) && !isset($applicationtype))
             $applicationtype = $_POST["applicationtype2"];
         else if (isset($_POST["applicationtype2"]))
             $applicationtype .= "\t" . $_POST["applicationtype2"];

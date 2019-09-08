@@ -18,7 +18,7 @@
             include "searchjobfunctions.php";
             include "genericfunctions.php";
 
-            if (!isset($_GET["searchterm"]))
+            if (!isset($_GET["searchterm"]) || $_GET["searchterm"] == "")
             {
                 ErrorMessage(
                     "looks like you didn't search for anything.",

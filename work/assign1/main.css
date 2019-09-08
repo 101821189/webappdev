@@ -1,3 +1,13 @@
+h1 {
+    margin: 2% auto;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1em;
+}
+
 .minorHeading {
     font-weight: bold;
 }
@@ -10,12 +20,6 @@
     width: 50%;
 }
 
-h1 {
-    margin: 2% auto;
+.message {
     text-align: center;
-}
-
-h2 {
-    text-align: center;
-    font-size: 1em;
 }

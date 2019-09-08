@@ -23,12 +23,12 @@
                 if (WriteData())
                 {
                     echo "<h1>success!</h1>";
-                    echo "<p>congratulations, your job has been posted!</p>";
+                    echo "<p class='message'>congratulations, your job has been posted!</p>";
                 }
                 else
                 {
                     echo "<h1>huh... that shouldn't happen</h1>";
-                    echo "<p>something went wrong with your application. maybe " .
+                    echo "<p class='message'>something went wrong with your application. maybe " .
                     "<a href='postjobform.php'>go back</a> and try again?</p>";
                 }
             }

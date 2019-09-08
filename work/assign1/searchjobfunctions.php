@@ -13,7 +13,7 @@
     function NothingHere($message)
     {
         echo "<h1>nothing here :(</h1>";
-        echo "<p>$message <a href='searchjobform.php'>go back to search form.</a></p>";
+        echo "<p class='message'>$message <a href='searchjobform.php'>go back to search form.</a></p>";
     }
 
     // we can safely assume that the jobs file exists here
@@ -83,7 +83,7 @@
         }
         else
         {
-            $res .= GetRow("application type:", $fields[6] . " " . $fields[7]);
+            $res .= GetRow("application type:", $fields[6] . " or " . $fields[7]);
             $res .= GetRow("location:", $fields[8]);
         }
         $res .= "</table>";
