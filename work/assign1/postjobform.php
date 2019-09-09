@@ -22,7 +22,7 @@
                 <table>
                     <tr>
                         <td><label for="positionid">position id:</label></td>
-                        <td><input type="text" name="positionid" id="positionid" placeholder="eg. P00001" /></td>
+                        <td><input type="text" name="positionid" id="positionid" placeholder="eg. P0001" /></td>
                     </tr>
                     <tr>
                         <td><label for="title">title:</label></td>
