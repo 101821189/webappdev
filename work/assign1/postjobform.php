@@ -34,7 +34,7 @@
                     </tr>
                     <tr>
                         <td><label for="closingdate">closing date:</label></td>
-                        <td><input type="date" name="closingdate" id="closingdate"/></td>
+                        <td><input type="date" name="closingdate" id="closingdate" value=<?php echo "\"".date("Y-m-d")."\""?>/></td>
                     </tr>
                     <tr>
                         <td><label>position:</label></td>

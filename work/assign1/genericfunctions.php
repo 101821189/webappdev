@@ -1,4 +1,5 @@
 <?php
+    // display a generic error message with a custom message
     function ErrorMessage($message, $prevpage)
     {
         echo "<h1>uh oh</h1>";

@@ -19,6 +19,7 @@
             include "genericfunctions.php";
             include "entry.php";
 
+            // check if the user has even searched for anything
             if (!isset($_GET["searchterm"]) || $_GET["searchterm"] == "")
             {
                 ErrorMessage(
@@ -53,11 +54,11 @@
                         NothingHere("none of our jobs matched your criteria.");
                     else
                     {
-                        if (isset($_GET["sortbydate"]))
+                        if (isset($_GET["sortbydate"])) // if the user wishes to sort by date
                         {
                             SortByDate($result[1], $jobs);
                         }
-                        else
+                        else // otherwise they can get it in whatever order the file is in
                         {
                             echo "<h1>here's some jobs that matched what you're looking for</h1>";
                             echo "<h2>optionally, you could <a href='searchjobform.php'>search again</a></h2>";

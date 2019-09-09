@@ -1,4 +1,5 @@
 <?php
+    // class we use to sort jobs by closing date
     class JobListing
     {
         public $id;

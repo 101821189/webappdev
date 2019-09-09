@@ -29,10 +29,10 @@
         )
         {
             // check if the id is the correct format
-            if (!preg_match("/^P[0-9]{5}$/", $_POST["positionid"]))
+            if (!preg_match("/^P[0-9]{4}$/", $_POST["positionid"]))
             {
                 ErrorMessage(
-                    "make sure that the id is in the format \"Pxxxxx\" where x is a number.",
+                    "make sure that the id is in the format \"Pxxxx\" where x is a number.",
                     "postjobform.php"
                 );
 
@@ -87,6 +87,7 @@
         $title = $_POST["title"];
         $desc = $_POST["description"];
         
+        // formatting the date correctly for storage
         $date = $_POST["closingdate"];
         $datetemp = explode("-", $date);
         $date = $datetemp[2] . "/" . $datetemp[1] . "/" . $datetemp[0];
@@ -94,6 +95,7 @@
         $position = $_POST["position"];
         $contract = $_POST["contract"];
 
+        // correctly appending application type information
         if (isset($_POST["applicationtype1"]))
             $applicationtype = $_POST["applicationtype1"];
         if (isset($_POST["applicationtype2"]) && !isset($applicationtype))

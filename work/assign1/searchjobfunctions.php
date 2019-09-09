@@ -92,6 +92,7 @@
         return $res;
     }
 
+    // when we do a search with no filter options
     function RegularSearch($jobs, $term)
     {
         $display = "";
@@ -103,9 +104,12 @@
 
             if (CheckMatch($job, $term))
             {
-                $display .= GetJobDisplay($job);
-                $temp = explode("\t", $job);
-                array_push($entries, new JobListing($temp[0], $temp[3]));
+                $temp = GetFields($job);
+                if (CheckAvailability(ToUnixTimestamp($temp[3])))
+                {
+                    $display .= GetJobDisplay($job);
+                    array_push($entries, new JobListing($temp[0], $temp[3]));
+                }
             }
         }
 
@@ -113,6 +117,7 @@
         return $res;
     }
 
+    // when we do a search with filter options
     function NotSoRegularSearch($jobs, $term, $filter)
     {
         $display = "";
@@ -122,20 +127,31 @@
             if ($job == "") // just catches an edge case
                 continue;
 
+            // check which filter we wish to search with and use it accordingly
             switch ($filter)
             {
                 case "position":
                     if (CheckMatch(explode("\t", $job)[4], $term))
-                        $display .= GetJobDisplay($job);
+                    {
                         $temp = explode("\t", $job);
-                        array_push($entries, new JobListing($temp[0], $temp[3]));
+                        if (CheckAvailability(ToUnixTimestamp($temp[3])))
+                        {
+                            $display .= GetJobDisplay($job);
+                            array_push($entries, new JobListing($temp[0], $temp[3]));
+                        }
+                    }
                     break;
 
                 case "contract":
                     if (CheckMatch(explode("\t", $job)[5], $term))
-                        $display .= GetJobDisplay($job);
+                    {
                         $temp = explode("\t", $job);
-                        array_push($entries, new JobListing($temp[0], $temp[3]));
+                        if (CheckAvailability(ToUnixTimestamp($temp[3])))
+                        {
+                            $display .= GetJobDisplay($job);
+                            array_push($entries, new JobListing($temp[0], $temp[3]));
+                        }
+                    }
                     break;
 
                 case "application type":
@@ -146,17 +162,26 @@
                         $res = CheckMatch($temp[6] . " " . $temp[7], $term);
 
                     if ($res)
-                        $display .= GetJobDisplay($job);
+                    {
                         $temp = explode("\t", $job);
-                        array_push($entries, new JobListing($temp[0], $temp[3]));
+                        if (CheckAvailability(ToUnixTimestamp($temp[3])))
+                        {
+                            $display .= GetJobDisplay($job);
+                            array_push($entries, new JobListing($temp[0], $temp[3]));
+                        }
+                    }
                     break;
                 
                 case "location":
                     $temp = explode("\t", $job);
                     if (CheckMatch($temp[sizeof($temp) - 1], $term))
-                        $display .= GetJobDisplay($job);
-                        $temp = explode("\t", $job);
-                        array_push($entries, new JobListing($temp[0], $temp[3]));
+                    {
+                        if (CheckAvailability(ToUnixTimestamp($temp[3])))
+                        {
+                            $display .= GetJobDisplay($job);
+                            array_push($entries, new JobListing($temp[0], $temp[3]));
+                        }
+                    }
                     break;
 
                 default:
@@ -183,9 +208,24 @@
         }
     }
 
+    // used for usort to be able to sort the entries by date
     function Compare($obj1, $obj2)
     {
         return $obj1->date < $obj2->date;
+    }
+
+    // used when we wish to check if a job has closed or not
+    function CheckAvailability($jobdate)
+    {
+        return $jobdate > time();
+    }
+
+    // converts our dates into unix timestamps
+    function ToUnixTimestamp($date)
+    {
+        $d = explode("/", $date);
+        $temp = $d[2] . "-" . $d[1] . "-" . $d[0];
+        return strtotime($temp);
     }
 
     // sort all jobs on display by date in descending order
@@ -196,17 +236,17 @@
 
         // loop through and make all the dates into unix timestamps
         foreach ($jobdates as $jd)
-        {
-            $d = explode("/", $jd->date);
-            $jd->date = $d[2] . "-" . $d[1] . "-" . $d[0];
-            $jd->date = strtotime($jd->date);
-        }
+            $jd->date = ToUnixTimestamp($jd->date);
 
         // use this to sort each listing by their dates
         usort($jobdates, 'Compare');
 
         // print out each listing in their new order
         foreach ($jobdates as $jd)
-            PrintByID($jd->id, $jobs);
+        {
+            // only show the job listing if it isn't past the closing date
+            if (CheckAvailability($jd->date))
+                PrintByID($jd->id, $jobs);
+        }
     }
 ?>

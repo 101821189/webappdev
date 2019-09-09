@@ -20,12 +20,12 @@
             // validate inputs
             if (ValidateInputs())
             {
-                if (WriteData())
+                if (WriteData()) // if we successfully write to the file
                 {
                     echo "<h1>success!</h1>";
                     echo "<p class='message'>congratulations, your job has been posted!</p>";
                 }
-                else
+                else // if file writing fails
                 {
                     echo "<h1>huh... that shouldn't happen</h1>";
                     echo "<p class='message'>something went wrong with your application. maybe " .
