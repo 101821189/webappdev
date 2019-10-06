@@ -1,4 +1,3 @@
-
 <?php
     if (isset($_POST["email"], $_POST["profilename"], $_POST["password"], $_POST["confirmpassword"]))
         Process($_POST["email"], $_POST["profilename"], $_POST["password"], $_POST["confirmpassword"]);
@@ -48,7 +47,7 @@
 
         // we can now safely assume that the data is valid
         AddUser($email, $profilename, $password);
-        // TODO: set session to successful login status
+        $_SESSION["email"] = $email; // will only ever be set if there is an active loggged in session
         header("Location:friendadd.php");
     }
 

@@ -10,15 +10,15 @@
     <link rel="stylesheet" href="forms.css" />
     <link rel="stylesheet" href="main.css" />
 
-    <title>assignment 2 || sign up</title>
+    <title>assignment 2 || login</title>
 </head>
 <body>
     <?php include "header.php"; ?>
 
     <main class="container lead">
-    <h1>sign up</h1>
+    <h1>login</h1>
 
-    <?php include "signup_functions.php" ?>
+    <?php include "login_functions.php" ?>
     </main>
 </body>
 </html>
