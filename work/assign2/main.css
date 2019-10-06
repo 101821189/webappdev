@@ -1,0 +1,30 @@
+h1 {
+    margin: 2% auto;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1em;
+}
+
+.minorHeading {
+    font-weight: bold;
+}
+
+.jobListing {
+    border-top: 0.1em solid darkgray;
+    border-bottom: 0.1em solid darkgray;
+    padding: 1%;
+    margin: 1% auto;
+    width: 50%;
+}
+
+.message {
+    text-align: center;
+}
+
+#errors {
+    text-align: center;
+    color: red;
+}
