@@ -15,7 +15,7 @@
     <?php include "header.php"; ?>
 
     <main class="container lead">
-    <h1>add a friend</h1>
+    <h1>my friends</h1>
     </main>
 </body>
 </html>
