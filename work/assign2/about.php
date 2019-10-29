@@ -16,7 +16,7 @@
     <main class="container lead">
     <h1>about</h1>
     <ul>
-        <li>TODO: say what tasks i did not complete</li>
+        <li>for this assignment i did not do any of the extra challenges</li>
         <li>for this assignment i have done the following extra tasks:
         <ul>
             <li>used bootstrap</li>
