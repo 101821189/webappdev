@@ -48,7 +48,7 @@
         // we can now safely assume that the data is valid
         AddUser($email, $profilename, $password);
         $_SESSION["email"] = $email; // will only ever be set if there is an active loggged in session
-        header("Location:friendadd.php");
+        header("Location:friendslist.php");
     }
 
     function ValidateInput($email, $profilename, $password, $confirmpassword)

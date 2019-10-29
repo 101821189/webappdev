@@ -14,15 +14,15 @@
     <link rel="stylesheet" href="forms.css" />
     <link rel="stylesheet" href="main.css" />
 
-    <title>assignment 2 || add friends</title>
+    <title>assignment 2 || friends list</title>
 </head>
 <body>
     <?php include "header.php"; ?>
 
     <main class="container lead">
-    <?php include "friendadd_functions.php" ?>
+    <?php include "friendslist_functions.php" ?>
     <p style="text-align: center">
-        <a href="friendslist.php" class="btn btn-primary">go back</a>
+        <a href="friendadd.php" class="btn btn-primary">add a friend</a> 
         <a href="logout.php" class="btn btn-secondary">log out</a>
     </p>
     </main>

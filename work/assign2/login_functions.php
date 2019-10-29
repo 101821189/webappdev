@@ -39,7 +39,7 @@
         
         // now we can assume that the user has entered the correct username and password
         $_SESSION["email"] = $email; // only ever set when the user is logged in
-        header("Location:friendadd.php");
+        header("Location:friendslist.php");
     }
 
     function ValidateInput($email, $password)
