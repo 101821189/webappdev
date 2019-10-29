@@ -62,11 +62,6 @@
                         $query = "INSERT INTO myfriends (friend_id1, friend_id2) VALUES ($id1, $id2)";
                         $conn->query($query);
 
-                        //$query = "SELECT * FROM friends WHERE friend_id = $id1";
-                        //$result = $conn->query($query)->fetch_assoc();
-                        //$num = $result["num_of_friends"];
-                        //$num++;
-
                         $query = "UPDATE friends SET num_of_friends = num_of_friends + 1 WHERE friend_id = $id1";
                         $conn ->query($query);
                         break;
