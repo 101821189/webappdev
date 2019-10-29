@@ -22,6 +22,17 @@
                 echo "<p>created friends table successfully</p>";
             else
                 echo "<p>uh oh something went wrong when creating the friends table</p>";
+            
+            include "dummydata.php";
+            for ($i = 0; $i < 10; $i++)
+            {
+                $name = $names[rand(0, count($names) - 1)];
+                $domain = $domains[rand(0, count($domains) - 1)];
+                $query = "INSERT INTO friends (friend_email, password, profile_name, date_started, num_of_friends) ";
+                $query .= "VALUES ('$name@$domain.com', '$name', '$name', CURRENT_DATE, 0)";
+
+                $conn->query($query);
+            }
         }
 
         // check if myfriends table exists
@@ -35,6 +46,33 @@
                 echo "<p>created myfriends table successfully</p>";
             else
                 echo "<p>uh oh something went wrong when creating the myfriends table</p>";
+
+            for ($i = 0; $i < 20; $i++)
+            {
+                while (true)
+                {
+                    $id1 = rand(1, 10);
+                    $id2 = $id1;
+                    while ($id1 == $id2)
+                        $id2 = rand(1, 10);
+
+                    $query = "SELECT * FROM myfriends WHERE friend_id1 = $id1 AND friend_id2 = $id2";
+                    if ($conn->query($query)->num_rows == 0)
+                    {
+                        $query = "INSERT INTO myfriends (friend_id1, friend_id2) VALUES ($id1, $id2)";
+                        $conn->query($query);
+
+                        //$query = "SELECT * FROM friends WHERE friend_id = $id1";
+                        //$result = $conn->query($query)->fetch_assoc();
+                        //$num = $result["num_of_friends"];
+                        //$num++;
+
+                        $query = "UPDATE friends SET num_of_friends = num_of_friends + 1 WHERE friend_id = $id1";
+                        $conn ->query($query);
+                        break;
+                    }
+                }
+            }
         }
     }
 ?>
